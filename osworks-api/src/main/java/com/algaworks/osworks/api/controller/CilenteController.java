@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.Valid;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.procedure.internal.Util.ResultClassesResolutionContext;
@@ -24,12 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.algaworks.osworks.domain.model.Cliente;
 import com.algaworks.osworks.domain.repository.ClienteRepository;
+import com.algaworks.osworks.domain.service.CadastroClienteService;
 
 @RestController
 @RequestMapping("clientes")
 public class CilenteController {
-	
 
+@Autowired
+private CadastroClienteService cadastroCliente;
 
 @Autowired
 private ClienteRepository clienteRepository;
@@ -55,20 +58,20 @@ public ResponseEntity<Cliente> buscar(@PathVariable Long clienteId) {
 
 @PostMapping
 @ResponseStatus(HttpStatus.CREATED)
-public Cliente adicionar(@RequestBody Cliente cliente) {
-	return clienteRepository.save(cliente);
+public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
+	return cadastroCliente.salvar(cliente);
 	
 }
 
 @PutMapping("/{clienteId}")
-public ResponseEntity<Cliente> atualizar(@PathVariable Long clienteId, @RequestBody Cliente cliente) {
+public ResponseEntity<Cliente> atualizar(@Valid @PathVariable Long clienteId, @RequestBody Cliente cliente) {
 	
 	if (!clienteRepository.existsById(clienteId) ) {
 	  return  ResponseEntity.notFound().build();
 	}
 	
 	cliente.setId(clienteId);
-	cliente = clienteRepository.save(cliente);
+	cliente = cadastroCliente.salvar(cliente);
 	return ResponseEntity.ok(cliente);
 	
 	
@@ -81,7 +84,7 @@ public ResponseEntity<Void> remover(@PathVariable Long clienteId) {
 	if (!clienteRepository.existsById(clienteId) ) {
 		  return  ResponseEntity.notFound().build();
 		}	
-	clienteRepository.deleteById(clienteId);
+	cadastroCliente.excluir(clienteId);
 	return ResponseEntity.noContent().build(); 
 }
 
