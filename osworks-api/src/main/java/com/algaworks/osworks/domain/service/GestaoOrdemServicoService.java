@@ -1,9 +1,9 @@
 package com.algaworks.osworks.domain.service;
 
-import java.time.LocalDateTime;
+
+import java.time.OffsetDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.OrderComparator.OrderSourceProvider;
 import org.springframework.stereotype.Service;
 
 import com.algaworks.osworks.domain.exception.NegocioException;
@@ -27,7 +27,7 @@ public class GestaoOrdemServicoService {
 				.orElseThrow(() -> new NegocioException("Cliente não encontrado") );
 	     
 		 ordemServico.setCliente(cliente);
-		 ordemServico.setDataAbertura(LocalDateTime.now());
+		 ordemServico.setDataAbertura(OffsetDateTime.now());
 		 ordemServico.setStatus(StatusOrdemServico.ABERTA);
 		 
 		return ordemServicoRepository.save(ordemServico);
