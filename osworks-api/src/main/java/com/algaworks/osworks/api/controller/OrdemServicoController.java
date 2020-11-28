@@ -2,6 +2,7 @@ package com.algaworks.osworks.api.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import com.algaworks.osworks.domain.model.OrdemServico;
-import com.algaworks.osworks.domain.repository.OrdemServicoRepository;
-import com.algaworks.osworks.domain.service.GestaoOrdemServicoService;
-import com.algaworks.osworks.model.OrdemServicoModel;
+import com.algaworks.osworks.api.domain.model.OrdemServico;
+import com.algaworks.osworks.api.domain.repository.OrdemServicoRepository;
+import com.algaworks.osworks.api.domain.service.GestaoOrdemServicoService;
+import com.algaworks.osworks.api.model.OrdemServicoModel;
+
+
 
 
 @RestController
@@ -37,16 +40,16 @@ public class OrdemServicoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public OrdemServico criar(@Valid @RequestBody OrdemServico ordemServico) {
+	public OrdemServicoModel criar(@Valid @RequestBody OrdemServico ordemServico) {
 		
-		return gestaoOrdemServicoService.criar(ordemServico);
+		return toModel(gestaoOrdemServicoService.criar(ordemServico));
 	}
 	
  
 	@GetMapping
-	public List<OrdemServico> listar() {
+	public List<OrdemServicoModel> listar() {
 		
-		return ordemServicoRepository.findAll();
+		return toCollectionModel(ordemServicoRepository.findAll());
 	}
 	
 	
@@ -56,7 +59,7 @@ public class OrdemServicoController {
 		Optional<OrdemServico> ordemServico = ordemServicoRepository.findById(ordemServicoId);
 		
 		if (ordemServico.isPresent()) {
-			OrdemServicoModel model = modelMapper.map(ordemServico.get(), OrdemServicoModel.class);
+			OrdemServicoModel model = toModel(ordemServico.get());
 		    return ResponseEntity.ok(model);	
 		}
 		
@@ -66,6 +69,18 @@ public class OrdemServicoController {
 	
 	
 	
+	private OrdemServicoModel toModel(OrdemServico ordemServico) {
+		
+		return modelMapper.map(ordemServico, OrdemServicoModel.class);
+	}
+	
+	
+   private List<OrdemServicoModel> toCollectionModel(List<OrdemServico> ordensServico) {
+		
+	    return ordensServico.stream()
+	    		.map(ordemServico -> toModel(ordemServico) )
+	    		.collect(Collectors.toList());
+	}
 	
 	
 }

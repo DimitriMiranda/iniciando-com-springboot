@@ -1,4 +1,4 @@
-package com.algaworks.osworks.core;
+package com.algaworks.osworks.api.core;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

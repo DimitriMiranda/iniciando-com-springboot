@@ -1,4 +1,4 @@
-package com.algaworks.osworks.domain.model;
+package com.algaworks.osworks.api.domain.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ import javax.validation.groups.Default;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
 
-import com.algaworks.osworks.domain.ValidationGroups;
+import com.algaworks.osworks.api.domain.ValidationGroups;
 
 @Entity
 public class OrdemServico {

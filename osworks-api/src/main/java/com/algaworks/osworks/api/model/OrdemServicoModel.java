@@ -1,9 +1,9 @@
-package com.algaworks.osworks.model;
+package com.algaworks.osworks.api.model;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
-import com.algaworks.osworks.domain.model.StatusOrdemServico;
+import com.algaworks.osworks.api.domain.model.StatusOrdemServico;
 
 public class OrdemServicoModel {
 	

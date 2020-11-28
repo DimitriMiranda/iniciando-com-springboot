@@ -1,4 +1,4 @@
-package com.algaworks.osworks.domain.model;
+package com.algaworks.osworks.api.domain.model;
 
 public enum StatusOrdemServico {
 	

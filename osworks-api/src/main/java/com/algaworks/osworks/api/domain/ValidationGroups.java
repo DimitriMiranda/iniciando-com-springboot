@@ -1,4 +1,4 @@
-package com.algaworks.osworks.domain;
+package com.algaworks.osworks.api.domain;
 
 public interface ValidationGroups {
 	

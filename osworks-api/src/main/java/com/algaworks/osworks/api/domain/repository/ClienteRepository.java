@@ -1,11 +1,11 @@
-package com.algaworks.osworks.domain.repository;
+package com.algaworks.osworks.api.domain.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.algaworks.osworks.domain.model.Cliente;
+import com.algaworks.osworks.api.domain.model.Cliente;
 
 
 

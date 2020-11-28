@@ -1,11 +1,11 @@
-package com.algaworks.osworks.domain.service;
+package com.algaworks.osworks.api.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.algaworks.osworks.domain.exception.NegocioException;
-import com.algaworks.osworks.domain.model.Cliente;
-import com.algaworks.osworks.domain.repository.ClienteRepository;
+import com.algaworks.osworks.api.domain.exception.NegocioException;
+import com.algaworks.osworks.api.domain.model.Cliente;
+import com.algaworks.osworks.api.domain.repository.ClienteRepository;
 
 @Service
 public class CadastroClienteService {

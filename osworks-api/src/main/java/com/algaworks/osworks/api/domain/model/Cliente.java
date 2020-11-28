@@ -1,4 +1,4 @@
-package com.algaworks.osworks.domain.model;
+package com.algaworks.osworks.api.domain.model;
 
 
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.algaworks.osworks.domain.ValidationGroups;
+import com.algaworks.osworks.api.domain.ValidationGroups;
 
 @Entity
 
